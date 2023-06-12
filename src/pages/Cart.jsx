@@ -1,11 +1,27 @@
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { toast } from "react-hot-toast";
 import { useEffect, useState } from "react";
 import CartItem from "../components/CartItem";
 
 const Cart = () => {
   const { cart } = useSelector((state) => state);
   const [amount, setAmount] = useState(0);
+
+  const payment = () => {
+    toast.success("Payment Successfully Done", {
+      duration: 2000,
+    });
+    toast("Thanks for Shopping!! Vist Again", {
+      icon: "😊",
+      duration: 6000,
+      style: {
+        borderRadius: "10px",
+        background: "#333",
+        color: "#fff",
+      },
+    });
+  };
 
   // console.log(cart)
   useEffect(() => {
@@ -47,7 +63,10 @@ const Cart = () => {
                 </span>{" "}
                 ${amount}
               </p>
-              <button className="bg-green-700 hover:bg-purple-50 rounded-lg text-white transition duration-300 ease-linear mt-5 border-2 border-green-600 font-bold hover:text-green-700 p-3 text-xl mr-10">
+              <button
+                onClick={payment}
+                className="bg-green-700 hover:bg-purple-50 rounded-lg text-white transition duration-300 ease-linear mt-5 border-2 border-green-600 font-bold hover:text-green-700 p-3 text-xl mr-10"
+              >
                 CheckOut Now
               </button>
             </div>
